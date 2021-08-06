@@ -1,0 +1,53 @@
+@baseUrl = http://localhost:3000/api/v1
+
+### register
+
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{   
+"fullName": "Ish",
+"email": "ish@gmail.com",
+"password": "isha"
+}
+
+### login
+# @name LoginRequest
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+"email": "isha12@gmail.com",
+"password": "cD45Bv"
+}
+### taking token
+@token = {{LoginRequest.response.body.token}}
+
+
+### Get user by id
+GET {{baseUrl}}/?id=8
+Authorization: {{token}}
+
+### Get user by name
+GET {{baseUrl}}/?fullName=isha
+Authorization: {{token}}
+
+### Get list of user
+GET {{baseUrl}}/
+Authorization: {{token}}
+
+### Post cab
+
+Post {{baseUrl}}/CabBook
+Content-Type: application/json
+Authorization: {{token}}
+
+{
+    "source": "heaven",
+    "destination": "hell"
+}
+
+### Get cab info
+
+Get {{baseUrl}}/cabs
+Authorization: {{token}}
